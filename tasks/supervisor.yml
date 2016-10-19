@@ -1,14 +1,9 @@
 ---
 
 - name: Install dependencies
-  apt: pkg=python-pip
+  apt: name=supervisor update_cache=yes
   when: ansible_os_family == 'Debian'
 
-- name: Install supervisor
-  pip: name=supervisor version={{ supervisor_version }}
-  notify:
-    - supervisor restart
-    
 - name: Install superlance
   pip: name=superlance
   when: supervisor_superlance
